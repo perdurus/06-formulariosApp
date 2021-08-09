@@ -1,0 +1,68 @@
+<h2>Template: <small>Dinámicos</small></h2>
+<hr>
+
+<form (ngSubmit)="guardar()" autocomplete="off" #miformulario="ngForm">
+    <!--Nombre-->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" placeholder="Nombre de la persona" name="producto" [ngModel]="persona.nombre" required minlength="3">
+            <span class="form-text text-danger" *ngIf="miformulario.controls.producto?.errors && miformulario.controls.producto?.touched">El campo es obligatorio</span>
+        </div>
+    </div>
+
+    <!--Agregar favorito-->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Agregar favoritos</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Agregar favorito" name="nuevoJuego" [(ngModel)]="nuevoJuego" (keyup.enter)="agregar()">
+                <button class="btn btn-outline-primary" type="button" (click)="agregar()">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Lista de juegos favoritos-->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9">
+            <div class="input-group mb-1" *ngFor="let item of persona.favoritos; let i= index">
+                <input class="form-control" [(ngModel)]="item.nombre" name="favorito_{{i}}" required>
+                <button class="btn btn-outline-danger" type="button" (click)="eliminar(i)">Eliminar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button" (click)="guardar()" class="btn btn-primary float-end" [disabled]="miformulario.invalid">Guardar</button>
+        </div>
+    </div>
+
+</form>
+
+
+<div class="row">
+    <div class="col">
+        <span>Valid</span>
+        <pre>{{ miformulario.valid }}</pre>
+        <span>Invalid</span>
+        <pre>{{ miformulario.invalid }}</pre>
+
+        <span>Pristine</span>
+        <pre>{{ miformulario.pristine }}</pre>
+
+        <span>Touched</span>
+        <pre>{{ miformulario.touched }}</pre>
+
+
+        <span>Valor</span>
+        <pre>{{ miformulario.value | json}}</pre>
+
+        <span>Persona</span>
+        <pre>{{ persona | json}}</pre>
+
+    </div>
+</div>
+
