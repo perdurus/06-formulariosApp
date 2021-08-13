@@ -9,3 +9,26 @@
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let item of reactiveMenu" [routerLink]="[item.ruta]" routerLinkActive="active">{{item.texto}}</li>
 </ul>
+
+<h2>Validaciones</h2>
+<hr>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of authMenu" [routerLink]="[item.ruta]" routerLinkActive="active">{{item.texto}}</li>
+</ul>
+
+<!--
+1. Authmenu nuevo 
+2. Crear nuevo módulo
+auth.module.ts
+auth.routing.module.ts
+ng g m ........ --routing
+
+3. Configurar rutas 
+   login.Component 'login'
+   registro.Component 'registro'
+
+4. Lazy load del módulo
+
+
+
+-->
